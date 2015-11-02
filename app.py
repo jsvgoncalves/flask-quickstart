@@ -2,7 +2,8 @@
 #
 #
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+
 app = Flask(__name__)
 
 
@@ -23,6 +24,17 @@ def login():
     #    # do_something()
     # else:
     #    # do_something_else()
+
+@app.route('/register', methods=['POST'])
+def betterRegister():
+    user = request.form["rhcloud-login"]
+    return render_template('index.html', username=user)
+
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    return render_template('index.html')
+
 
 
 if __name__ == '__main__':
